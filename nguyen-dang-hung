@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Nguyễn Đăng Hùng | Personal Website</title>
+  <meta name="description" content="Website cá nhân của Nguyễn Đăng Hùng.">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    :root {
+      --bg: #070707;
+      --card: #111111;
+      --card2: #161616;
+      --text: #ffffff;
+      --muted: #9b9b9b;
+      --line: #262626;
+      --accent: #ffffff;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at 80% 10%, #242424 0%, transparent 25%),
+        radial-gradient(circle at 10% 70%, #181818 0%, transparent 25%),
+        var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* NAVBAR */
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 70px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 7%;
+      background: rgba(7, 7, 7, 0.75);
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 21px;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    .logo span {
+      color: #888;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: #aaa;
+      font-size: 14px;
+      transition: .3s;
+    }
+
+    .nav-links a:hover {
+      color: white;
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 100px 20px 50px;
+      position: relative;
+    }
+
+    .hero-content {
+      max-width: 850px;
+    }
+
+    .hello {
+      color: #999;
+      font-size: 15px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      animation: fadeUp 1s ease;
+    }
+
+    .hero h1 {
+      font-size: clamp(45px, 9vw, 100px);
+      line-height: .95;
+      font-weight: 900;
+      letter-spacing: -5px;
+      animation: fadeUp 1s ease .15s both;
+    }
+
+    .hero h1 span {
+      color: #777;
+    }
+
+    .hero p {
+      margin: 30px auto;
+      color: #aaa;
+      max-width: 580px;
+      line-height: 1.8;
+      animation: fadeUp 1s ease .3s both;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      animation: fadeUp 1s ease .45s both;
+    }
+
+    .btn {
+      padding: 14px 24px;
+      border-radius: 50px;
+      border: 1px solid #333;
+      transition: .3s;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: white;
+      color: black;
+      font-weight: bold;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(255,255,255,.15);
+    }
+
+    .btn-dark:hover {
+      background: #181818;
+      transform: translateY(-3px);
+    }
+
+    .scroll {
+      position: absolute;
+      bottom: 30px;
+      color: #666;
+      font-size: 12px;
+      letter-spacing: 2px;
+    }
+
+    /* GENERAL */
+
+    section {
+      max-width: 1100px;
+      margin: auto;
+      padding: 110px 25px;
+    }
+
+    .section-label {
+      color: #666;
+      font-size: 12px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: clamp(30px, 5vw, 50px);
+      margin-bottom: 45px;
+      letter-spacing: -2px;
+    }
+
+    /* ABOUT */
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .avatar {
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      background:
+        linear-gradient(145deg, #292929, #080808);
+      border: 1px solid #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 70px;
+      font-weight: 900;
+      box-shadow: 0 30px 80px rgba(0,0,0,.7);
+    }
+
+    .about-text {
+      color: #aaa;
+      line-height: 1.9;
+      font-size: 16px;
+    }
+
+    .info {
+      margin-top: 25px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .info div {
+      background: var(--card);
+      border: 1px solid var(--line);
+      padding: 18px;
+      border-radius: 15px;
+    }
+
+    .info small {
+      display: block;
+      color: #666;
+      margin-bottom: 5px;
+    }
+
+    /* INTERESTS */
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      background: linear-gradient(145deg, #151515, #0d0d0d);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 30px;
+      min-height: 190px;
+      transition: .35s;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      border-color: #444;
+    }
+
+    .icon {
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      font-size: 20px;
+    }
+
+    .card p {
+      color: #888;
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    /* STATS */
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      margin-top: 25px;
+    }
+
+    .stat {
+      background: #101010;
+      border: 1px solid #242424;
+      padding: 30px;
+      border-radius: 20px;
+      text-align: center;
+    }
+
+    .stat strong {
+      font-size: 35px;
+      display: block;
+    }
+
+    .stat span {
+      color: #777;
+      font-size: 13px;
+    }
+
+    /* SOCIAL */
+
+    .social {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .social a {
+      padding: 15px 22px;
+      border: 1px solid #292929;
+      border-radius: 50px;
+      color: #aaa;
+      transition: .3s;
+    }
+
+    .social a:hover {
+      color: white;
+      background: #151515;
+      transform: translateY(-3px);
+    }
+
+    /* CONTACT */
+
+    .contact-box {
+      text-align: center;
+      padding: 70px 25px;
+      background: linear-gradient(145deg, #151515, #090909);
+      border: 1px solid #252525;
+      border-radius: 30px;
+    }
+
+    .contact-box h2 {
+      font-size: clamp(35px, 6vw, 65px);
+      margin-bottom: 20px;
+    }
+
+    .contact-box p {
+      color: #777;
+      margin-bottom: 30px;
+    }
+
+    /* FOOTER */
+
+    footer {
+      text-align: center;
+      padding: 35px 20px;
+      border-top: 1px solid #191919;
+      color: #555;
+      font-size: 13px;
+    }
+
+    /* ANIMATION */
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(25px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: .8s ease;
+    }
+
+    .reveal.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 700px) {
+
+      nav {
+        padding: 0 20px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero h1 {
+        letter-spacing: -3px;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .avatar {
+        margin: auto;
+        width: 190px;
+        height: 190px;
+        font-size: 55px;
+      }
+
+      .info {
+        text-align: left;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      section {
+        padding: 80px 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVIGATION -->
+
+  <nav>
+    <div class="logo">
+      HÙNG<span>.</span>
+    </div>
+
+    <ul class="nav-links">
+      <li><a href="#home">Trang chủ</a></li>
+      <li><a href="#about">Giới thiệu</a></li>
+      <li><a href="#interests">Sở thích</a></li>
+      <li><a href="#contact">Liên hệ</a></li>
+    </ul>
+  </nav>
+
+
+  <!-- HERO -->
+
+  <section class="hero" id="home">
+
+    <div class="hero-content">
+
+      <div class="hello">
+        WELCOME TO MY WEBSITE
+      </div>
+
+      <h1>
+        NGUYỄN<br>
+        <span>ĐĂNG HÙNG</span>
+      </h1>
+
+      <p>
+        Xin chào, tôi là Nguyễn Đăng Hùng.
+        Đây là không gian cá nhân của tôi — nơi tôi chia sẻ
+        những điều mình yêu thích, những mục tiêu và hành trình của mình.
+      </p>
+
+      <div class="buttons">
+        <a href="#about" class="btn btn-primary">
+          Khám phá tôi
+        </a>
+
+        <a href="#contact" class="btn btn-dark">
+          Liên hệ
+        </a>
+      </div>
+
+    </div>
+
+    <div class="scroll">
+      ↓ SCROLL
+    </div>
+
+  </section>
+
+
+  <!-- ABOUT -->
+
+  <section id="about" class="reveal">
+
+    <div class="section-label">
+      01 — ABOUT ME
+    </div>
+
+    <h2 class="section-title">
+      Về tôi
+    </h2>
+
+    <div class="about-grid">
+
+      <div>
+        <div class="avatar">
+          H
+        </div>
+      </div>
+
+      <div>
+
+        <p class="about-text">
+          Tôi là <strong style="color:white">
+          Nguyễn Đăng Hùng
+          </strong>.
+          Tôi thích khám phá những thứ mới,
+          chơi game, bóng đá, công nghệ và đặc biệt
+          là học tiếng Trung.
+          Website này được tạo như một góc nhỏ trên Internet
+          để lưu lại những điều về tôi.
+        </p>
+
+        <div class="info">
+
+          <div>
+            <small>TÊN</small>
+            Nguyễn Đăng Hùng
+          </div>
+
+          <div>
+            <small>NGÔN NGỮ</small>
+            Tiếng Việt · 中文
+          </div>
+
+          <div>
+            <small>SỞ THÍCH</small>
+            Bóng đá · Gaming
+          </div>
+
+          <div>
+            <small>MOOD</small>
+            Always moving forward.
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- INTERESTS -->
+
+  <section id="interests" class="reveal">
+
+    <div class="section-label">
+      02 — MY WORLD
+    </div>
+
+    <h2 class="section-title">
+      Những điều tôi thích
+    </h2>
+
+    <div class="cards">
+
+      <div class="card">
+
+        <div class="icon">⚽</div>
+
+        <h3>Bóng đá</h3>
+
+        <p>
+          Theo dõi bóng đá và đặc biệt yêu thích
+          những trận đấu đỉnh cao.
+        </p>
+
+      </div>
+
+
+      <div class="card">
+
+        <div class="icon">🎮</div>
+
+        <h3>Gaming</h3>
+
+        <p>
+          FC Mobile, xây dựng đội hình,
+          H2H và những trận đấu căng thẳng.
+        </p>
+
+      </div>
+
+
+      <div class="card">
+
+        <div class="icon">🇨🇳</div>
+
+        <h3>Tiếng Trung</h3>
+
+        <p>
+          Học tiếng Trung và hướng tới những
+          mục tiêu lớn hơn trong tương lai.
+        </p>
+
+      </div>
+
+
+      <div class="card">
+
+        <div class="icon">📱</div>
+
+        <h3>Công nghệ</h3>
+
+        <p>
+          Thích tìm hiểu điện thoại, ứng dụng,
+          website và những công nghệ mới.
+        </p>
+
+      </div>
+
+
+      <div class="card">
+
+        <div class="icon">📸</div>
+
+        <h3>Chụp ảnh</h3>
+
+        <p>
+          Thích chỉnh sửa hình ảnh và tìm
+          những phong cách ảnh đẹp.
+        </p>
+
+      </div>
+
+
+      <div class="card">
+
+        <div class="icon">🚀</div>
+
+        <h3>Tương lai</h3>
+
+        <p>
+          Luôn muốn học hỏi thêm và xây dựng
+          một tương lai tốt hơn.
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <div class="stats">
+
+      <div class="stat">
+        <strong>01</strong>
+        <span>Personal Website</span>
+      </div>
+
+      <div class="stat">
+        <strong>∞</strong>
+        <span>Dreams</span>
+      </div>
+
+      <div class="stat">
+        <strong>24/7</strong>
+        <span>Keep Moving</span>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- SOCIAL -->
+
+  <section class="reveal">
+
+    <div class="section-label">
+      03 — SOCIAL
+    </div>
+
+    <h2 class="section-title">
+      Kết nối với tôi
+    </h2>
+
+    <div class="social">
+
+      <!-- ĐỔI LINK BÊN DƯỚI THÀNH LINK CỦA ÔNG -->
+
+      <a href="#" target="_blank">
+        TikTok
+      </a>
+
+      <a href="#" target="_blank">
+        Facebook
+      </a>
+
+      <a href="#" target="_blank">
+        Instagram
+      </a>
+
+      <a href="#" target="_blank">
+        Zalo
+      </a>
+
+    </div>
+
+  </section>
+
+
+  <!-- CONTACT -->
+
+  <section id="contact" class="reveal">
+
+    <div class="contact-box">
+
+      <div class="section-label">
+        04 — CONTACT
+      </div>
+
+      <h2>
+        Let's connect.
+      </h2>
+
+      <p>
+        Muốn liên hệ với tôi?
+      </p>
+
+      <a
+        class="btn btn-primary"
+        href="mailto:your@email.com"
+      >
+        Gửi Email
+      </a>
+
+    </div>
+
+  </section>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    © <span id="year"></span>
+    Nguyễn Đăng Hùng.
+    All rights reserved.
+
+  </footer>
+
+
+  <script>
+
+    // Tự động cập nhật năm
+
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+
+    // Hiệu ứng xuất hiện khi cuộn
+
+    const reveals =
+      document.querySelectorAll(".reveal");
+
+    const observer =
+      new IntersectionObserver(
+        entries => {
+
+          entries.forEach(entry => {
+
+            if (entry.isIntersecting) {
+
+              entry.target.classList.add("show");
+
+            }
+
+          });
+
+        },
+        {
+          threshold: 0.12
+        }
+      );
+
+
+    reveals.forEach(element => {
+      observer.observe(element);
+    });
+
+  </script>
+
+</body>
+</html>
